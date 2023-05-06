@@ -1,7 +1,7 @@
 {
   "name": "material-time-picker",
   "private": false,
-  "version": "0.0.5",
+  "version": "0.0.1",
   "type": "module",
   "files": [
     "dist",
@@ -12,7 +12,9 @@
     "url": "git+https://github.com/MatijaNovosel/material-time-picker.git"
   },
   "keywords": [
-    "tree-view",
+    "time-picker",
+    "material",
+    "material-ui",
     "material-time-picker",
     "vue3",
     "vue",

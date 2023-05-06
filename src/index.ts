@@ -1,3 +1,3 @@
-import TreeView from "./components/treeView.vue";
+import TimePicker from "./components/timePicker.vue";
 
-export { TreeView };
+export { TimePicker };

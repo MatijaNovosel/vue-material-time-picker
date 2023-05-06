@@ -8,7 +8,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
-      name: "VueTreeView",
+      name: "MaterialTimePicker",
       fileName: "material-time-picker"
     },
     rollupOptions: {
