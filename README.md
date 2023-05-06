@@ -2,7 +2,7 @@
   <img src="https://user-images.githubusercontent.com/36193643/236636342-a4f3b025-54a1-4a27-a6d9-9afdfbdd424b.png" />
 </div>
 
-<h1 align=center>Vue time picker</h1>
+<h1 align=center>Vue material time picker</h1>
 <p align=center>A material time picker component for Vue 3.</p>
 
 ## 🚀 Installation
@@ -10,7 +10,7 @@
 Install using your package manager of choice:
 
 ```bash
-yarn add material-time-picker
+yarn add vue-material-time-picker
 ```
 
 ## ⚙️ Usage
@@ -27,8 +27,8 @@ Import the component locally or define it globally and include the css file:
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import { TimePicker } from "material-time-picker";
-import "material-time-picker/dist/style.css";
+import { TimePicker } from "vue-material-time-picker";
+import "vue-material-time-picker/dist/style.css";
 const time = ref(null);
 </script>
 ```
@@ -42,4 +42,4 @@ const time = ref(null);
 | `readonly`    | `boolean` | false   | Makes the component uninteractable, but without the style of the disabled variant |
 | `use-seconds` | `boolean` | false   | Adds an additional step for picking the time                                      |
 | `automatic`   | `boolean` | true    | Automatically switches to the next step when picking the time                     |
-| `color`       | `string`  | #7e7ec2 | Color of the time picker title and clock hand as well as any active element       |
+| `color`       | `string`  | #3ba13b | Color of the time picker title and clock hand as well as any active element       |

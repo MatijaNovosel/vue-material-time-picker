@@ -9,7 +9,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "MaterialTimePicker",
-      fileName: "material-time-picker"
+      fileName: "vue-material-time-picker"
     },
     rollupOptions: {
       external: ["vue"],

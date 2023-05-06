@@ -1,5 +1,5 @@
 {
-  "name": "material-time-picker",
+  "name": "vue-material-time-picker",
   "private": false,
   "version": "0.0.1",
   "type": "module",
@@ -9,23 +9,23 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MatijaNovosel/material-time-picker.git"
+    "url": "git+https://github.com/MatijaNovosel/vue-material-time-picker.git"
   },
   "keywords": [
     "time-picker",
     "material",
     "material-ui",
-    "material-time-picker",
+    "vue-material-time-picker",
     "vue3",
     "vue",
     "vuejs"
   ],
-  "main": "./dist/material-time-picker.umd.cjs",
-  "module": "./dist/material-time-picker.js",
+  "main": "./dist/vue-material-time-picker.umd.cjs",
+  "module": "./dist/vue-material-time-picker.js",
   "exports": {
     ".": {
-      "import": "./dist/material-time-picker.js",
-      "require": "./dist/material-time-picker.umd.cjs"
+      "import": "./dist/vue-material-time-picker.js",
+      "require": "./dist/vue-material-time-picker.umd.cjs"
     },
     "./dist/style.css": {
       "import": "./dist/style.css",
