@@ -1,0 +1,55 @@
+{
+  "name": "material-time-picker",
+  "private": false,
+  "version": "0.0.5",
+  "type": "module",
+  "files": [
+    "dist",
+    "src/components/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatijaNovosel/material-time-picker.git"
+  },
+  "keywords": [
+    "tree-view",
+    "material-time-picker",
+    "vue3",
+    "vue",
+    "vuejs"
+  ],
+  "main": "./dist/material-time-picker.umd.cjs",
+  "module": "./dist/material-time-picker.js",
+  "exports": {
+    ".": {
+      "import": "./dist/material-time-picker.js",
+      "require": "./dist/material-time-picker.umd.cjs"
+    },
+    "./dist/style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vueuse/core": "^10.1.2",
+    "sass": "^1.62.1",
+    "vue": "^3.2.47"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.1.0",
+    "path": "^0.12.7",
+    "typescript": "^5.0.2",
+    "vite": "^4.3.2",
+    "vite-plugin-dts": "^2.3.0",
+    "vue-tsc": "^1.4.2"
+  }
+}
