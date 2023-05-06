@@ -19,8 +19,7 @@
           <div
             class="time-picker-clock__hand"
             :style="{
-              ...clockHandStyle,
-              backgroundColor: value !== null ? color : undefined
+              ...clockHandStyle
             }"
             :class="{
               'time-picker-clock__hand--inner': isInner(value)
@@ -31,7 +30,8 @@
             :key="v"
             class="time-picker-clock__item"
             :class="{
-              'time-picker-clock__item--active': v === displayedValue
+              'time-picker-clock__item--active': v === displayedValue,
+              'time-picker-clock__item--disabled': props.disabled
             }"
             :style="getTransform(v)"
           >
@@ -90,6 +90,8 @@ const values = computed(() => {
   return res;
 });
 
+const isInteractable = computed(() => !(props.readonly || props.disabled));
+
 const count = computed(() => props.max - props.min + 1);
 
 const roundCount = computed(() =>
@@ -105,7 +107,13 @@ const selectingHour = computed(() => props.selecting === SelectingTimes.Hour);
 const clockHandStyle = computed(() => ({
   transform: `rotate(${
     degreesPerUnit.value * (displayedValue.value - props.min)
-  }deg) scaleY(${handScale(displayedValue.value)})`
+  }deg) scaleY(${handScale(displayedValue.value)})`,
+  backgroundColor:
+    props.value !== null
+      ? props.disabled
+        ? "#8d7d7d"
+        : props.color
+      : undefined
 }));
 
 const displayedValue = computed(() =>
@@ -136,7 +144,11 @@ const getTransform = (i: number) => {
   const { x, y } = getPosition(i);
   return {
     backgroundColor:
-      i !== null && i === displayedValue.value ? props.color : undefined,
+      props.value !== null && i === displayedValue.value
+        ? props.disabled
+          ? "#8d7d7d"
+          : props.color
+        : undefined,
     left: `${50 + x * 50}%`,
     top: `${50 + y * 50}%`
   };
@@ -178,39 +190,45 @@ const setMouseDownValue = (value: number) => {
 };
 
 const onDragMove = (e: MouseEvent | TouchEvent) => {
-  e.preventDefault();
-  if ((!state.isDragging && e.type !== "click") || !clock.value) return;
-  const { width, top, left } = clock.value.getBoundingClientRect();
-  const { width: innerWidth } = innerClock.value!.getBoundingClientRect();
-  const { clientX, clientY } = "touches" in e ? e.touches[0] : e;
-  const center = { x: width / 2, y: -width / 2 };
-  const coords = { x: clientX - left, y: top - clientY };
-  const handAngle = Math.round(angle(center, coords) - 0 + 360) % 360;
-  const insideClick =
-    selectingHour.value &&
-    euclidean(center, coords) <
-      (innerWidth + innerWidth * innerRadiusScale) / 4;
-  const checksCount = Math.ceil(15 / degreesPerUnit.value);
-  let value;
+  if (isInteractable.value) {
+    e.preventDefault();
+    if ((!state.isDragging && e.type !== "click") || !clock.value) return;
+    const { width, top, left } = clock.value.getBoundingClientRect();
+    const { width: innerWidth } = innerClock.value!.getBoundingClientRect();
+    const { clientX, clientY } = "touches" in e ? e.touches[0] : e;
+    const center = { x: width / 2, y: -width / 2 };
+    const coords = { x: clientX - left, y: top - clientY };
+    const handAngle = Math.round(angle(center, coords) - 0 + 360) % 360;
+    const insideClick =
+      selectingHour.value &&
+      euclidean(center, coords) <
+        (innerWidth + innerWidth * innerRadiusScale) / 4;
+    const checksCount = Math.ceil(15 / degreesPerUnit.value);
+    let value;
 
-  for (let i = 0; i < checksCount; i++) {
-    value = angleToValue(handAngle + i * degreesPerUnit.value, insideClick);
-    return setMouseDownValue(value);
+    for (let i = 0; i < checksCount; i++) {
+      value = angleToValue(handAngle + i * degreesPerUnit.value, insideClick);
+      return setMouseDownValue(value);
+    }
   }
 };
 
 const onMouseDown = (e: MouseEvent | TouchEvent) => {
-  e.preventDefault();
-  state.valueOnMouseDown = null;
-  state.valueOnMouseUp = null;
-  state.isDragging = true;
-  onDragMove(e);
+  if (isInteractable.value) {
+    e.preventDefault();
+    state.valueOnMouseDown = null;
+    state.valueOnMouseUp = null;
+    state.isDragging = true;
+    onDragMove(e);
+  }
 };
 
 const onMouseUp = (e: MouseEvent | TouchEvent) => {
-  e.stopPropagation();
-  state.isDragging = false;
-  if (state.valueOnMouseUp !== null) emit("change", state.valueOnMouseUp);
+  if (isInteractable.value) {
+    e.stopPropagation();
+    state.isDragging = false;
+    if (state.valueOnMouseUp !== null) emit("change", state.valueOnMouseUp);
+  }
 };
 
 watch(

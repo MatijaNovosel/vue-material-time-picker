@@ -8,7 +8,9 @@
     <div class="time-picker-title">
       <div class="time-picker-title__time">
         <div
-          @click="emit('update:selecting', SelectingTimes.Hour)"
+          @click="
+            isInteractable && emit('update:selecting', SelectingTimes.Hour)
+          "
           class="picker__title__btn"
           :class="{
             'picker__title__btn--active': SelectingTimes.Hour === selecting
@@ -18,7 +20,9 @@
         </div>
         <span> : </span>
         <div
-          @click="emit('update:selecting', SelectingTimes.Minute)"
+          @click="
+            isInteractable && emit('update:selecting', SelectingTimes.Minute)
+          "
           class="picker__title__btn"
           :class="{
             'picker__title__btn--active': SelectingTimes.Minute === selecting
@@ -29,7 +33,9 @@
         <template v-if="useSeconds">
           <span> : </span>
           <div
-            @click="emit('update:selecting', SelectingTimes.Second)"
+            @click="
+              isInteractable && emit('update:selecting', SelectingTimes.Second)
+            "
             class="picker__title__btn"
             :class="{
               'picker__title__btn--active': SelectingTimes.Second === selecting
@@ -44,6 +50,7 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from "vue";
 import { SelectingTimes } from "./constants";
 
 const emit = defineEmits<{
@@ -60,6 +67,8 @@ const props = defineProps<{
   color?: string;
   selecting: SelectingTimes;
 }>();
+
+const isInteractable = computed(() => !(props.readonly || props.disabled));
 </script>
 
 <style scoped lang="sass">

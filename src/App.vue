@@ -1,6 +1,6 @@
 <template>
   <div style="display: flex">
-    <time-picker v-model="time" use-seconds />
+    <time-picker disabled v-model="time" use-seconds />
     {{ time }}
   </div>
 </template>

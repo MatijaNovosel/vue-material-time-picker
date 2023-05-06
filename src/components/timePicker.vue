@@ -8,9 +8,13 @@
       :second="state.inputSecond"
       :selecting="state.selecting"
       :use-seconds="useSeconds"
+      :disabled="disabled"
+      :readonly="readonly"
       @update:selecting="(value: SelectingTimes) => (state.selecting = value)"
     />
     <time-picker-clock
+      :disabled="disabled"
+      :readonly="readonly"
       :color="color"
       @input="onInput"
       @change="onChange"
