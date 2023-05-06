@@ -35,11 +35,14 @@ const time = ref(null);
 
 ## 📃 Props
 
-| Name          | Type      | Default | Description                                                                       |
-| ------------- | --------- | ------- | --------------------------------------------------------------------------------- |
-| `v-model`     | `string`  |         | Standard two way input, HH:mm:ss format                                           |
-| `disabled`    | `boolean` | false   | Makes the component uninteractable                                                |
-| `readonly`    | `boolean` | false   | Makes the component uninteractable, but without the style of the disabled variant |
-| `use-seconds` | `boolean` | false   | Adds an additional step for picking the time                                      |
-| `automatic`   | `boolean` | true    | Automatically switches to the next step when picking the time                     |
-| `color`       | `string`  | #3ba13b | Color of the time picker title and clock hand as well as any active element       |
+| Name          | Type            | Default | Description                                                                                                      |
+| ------------- | --------------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
+| `v-model`     | `string`        |         | Standard two way input, HH:mm:ss format                                                                          |
+| `disabled`    | `boolean`       | false   | Makes the component uninteractable                                                                               |
+| `readonly`    | `boolean`       | false   | Makes the component uninteractable, but without the style of the disabled variant                                |
+| `use-seconds` | `boolean`       | false   | Adds an additional step for picking the time                                                                     |
+| `automatic`   | `boolean`       | true    | Automatically switches to the next step when picking the time                                                    |
+| `hide-title`  | `boolean`       | false   | Hides the time picker title                                                                                      |
+| `width`       | `number/string` | 290px   | Sets the width of the element - can be provided as a string like "290px" or "290" or a number, defaults to 290px |
+| `full-width`  | `boolean`       | false   | Ignores the previous `width` prop and sets the width to 100% of the parent container                             |
+| `color`       | `string`        | #3ba13b | Color of the time picker title and clock hand as well as any active element                                      |
