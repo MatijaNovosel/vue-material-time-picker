@@ -51,6 +51,7 @@ const emit = defineEmits<{
 
 const props = withDefaults(
   defineProps<{
+    customTime?: string | null;
     disabled?: boolean;
     min?: string;
     max?: string;
@@ -88,6 +89,10 @@ const setInputData = (value: string | null | Date) => {
     state.inputHour = value.getHours();
     state.inputMinute = value.getMinutes();
     state.inputSecond = value.getSeconds();
+  } else if (props.customTime != null) {
+    state.inputHour = parseInt(props.customTime.split(":")[0]);
+    state.inputMinute = parseInt(props.customTime.split(":")[1]);
+    state.inputSecond = parseInt(props.customTime.split(":")[2]);
   }
 };
 
