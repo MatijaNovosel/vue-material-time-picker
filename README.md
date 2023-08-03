@@ -37,7 +37,7 @@ const time = ref(null);
 
 | Name          | Type            | Default | Description                                                                                                      |
 | ------------- | --------------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
-| `v-model`     | `string`        |         | Standard two way input, HH:mm:ss format                                                                          |
+| `v-model`     | `string/Date`   | null    | Standard two way input, HH:mm:ss format or Date                                                                  |
 | `disabled`    | `boolean`       | false   | Makes the component uninteractable                                                                               |
 | `readonly`    | `boolean`       | false   | Makes the component uninteractable, but without the style of the disabled variant                                |
 | `use-seconds` | `boolean`       | false   | Adds an additional step for picking the time                                                                     |
