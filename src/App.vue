@@ -1,27 +1,6 @@
 <template>
   <div style="display: flex">
-    <time-picker v-model="time" v-if="!hidden" use-seconds>
-      <template
-        #header="{
-          hours,
-          minutes,
-          seconds,
-          selectHours,
-          selectMinutes,
-          selectSeconds
-        }"
-      >
-        <button @click="selectHours">
-          {{ hours || "--" }}
-        </button>
-        <button @click="selectMinutes">
-          {{ minutes || "--" }}
-        </button>
-        <button @click="selectSeconds">
-          {{ seconds || "--" }}
-        </button>
-      </template>
-    </time-picker>
+    <time-picker v-model="time" v-if="!hidden" use-seconds> </time-picker>
     {{ time }}
   </div>
   <div style="display: flex">
