@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, reactive } from "vue";
+import { computed, onMounted, reactive, watch } from "vue";
 import { SelectingTimes } from "./constants";
 import { convertToUnit } from "./helpers";
 import timePickerClock from "./timePickerClock.vue";
@@ -60,7 +60,7 @@ const props = withDefaults(
     useSeconds?: boolean;
     automatic?: boolean;
     color?: string;
-    modelValue: any;
+    modelValue: string | null | Date;
     width?: number | string;
   }>(),
   {
@@ -88,6 +88,11 @@ const setInputData = (value: string | null | Date) => {
     state.inputHour = value.getHours();
     state.inputMinute = value.getMinutes();
     state.inputSecond = value.getSeconds();
+  } else if (typeof value === "string") {
+    const [h, m, s] = value.split(":");
+    state.inputHour = parseInt(h);
+    state.inputMinute = parseInt(m);
+    state.inputSecond = parseInt(s);
   }
 };
 
@@ -154,8 +159,9 @@ const onChange = (value: number) => {
     state.inputHour === state.lazyInputHour &&
     state.inputMinute === state.lazyInputMinute &&
     (!props.useSeconds || state.inputSecond === state.lazyInputSecond)
-  )
+  ) {
     return;
+  }
 
   const time = genValue();
   if (time === null) return;
@@ -168,4 +174,9 @@ const onChange = (value: number) => {
 };
 
 onMounted(() => setInputData(props.modelValue));
+
+watch(
+  () => props.modelValue,
+  (val) => setInputData(val)
+);
 </script>
