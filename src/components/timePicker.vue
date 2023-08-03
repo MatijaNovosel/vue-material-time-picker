@@ -1,7 +1,7 @@
 <template>
   <div :style="styles">
     <time-picker-title
-      v-if="!hideTitle"
+      v-if="!hideTitle && !slots.header"
       :color="color"
       :hour="state.inputHour"
       :minute="state.inputMinute"
@@ -12,6 +12,17 @@
       :readonly="readonly"
       @update:selecting="(value: SelectingTimes) => (state.selecting = value)"
     />
+    <slot
+      :hours="state.inputHour"
+      :minutes="state.inputMinute"
+      :seconds="state.inputSecond"
+      :select-hours="() => (state.selecting = SelectingTimes.Hour)"
+      :select-minutes="() => (state.selecting = SelectingTimes.Minute)"
+      :select-seconds="() => (state.selecting = SelectingTimes.Second)"
+      v-if="slots.header"
+      name="header"
+    >
+    </slot>
     <time-picker-clock
       :disabled="disabled"
       :readonly="readonly"
@@ -35,11 +46,13 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, reactive, watch } from "vue";
+import { computed, onMounted, reactive, useSlots, watch } from "vue";
 import { SelectingTimes } from "./constants";
 import { convertToUnit } from "./helpers";
 import timePickerClock from "./timePickerClock.vue";
 import timePickerTitle from "./timePickerTitle.vue";
+
+const slots = useSlots();
 
 const emit = defineEmits<{
   (e: "change", time: string): void;

@@ -46,3 +46,45 @@ const time = ref(null);
 | `width`       | `number/string` | 290px   | Sets the width of the element - can be provided as a string like "290px" or "290" or a number, defaults to 290px |
 | `full-width`  | `boolean`       | false   | Ignores the previous `width` prop and sets the width to 100% of the parent container                             |
 | `color`       | `string`        | #3ba13b | Color of the time picker title and clock hand as well as any active element                                      |
+
+## 🧩 Slots
+
+### header
+
+Use this slot if you want to override the time picker header, an example being:
+
+```vue
+<time-picker v-model="time" use-seconds>
+  <template
+    #header="{
+      hours,
+      minutes,
+      seconds,
+      selectHours,
+      selectMinutes,
+      selectSeconds
+    }"
+  >
+    <button @click="selectHours">
+      {{ hours || "--" }}
+    </button>
+    <button @click="selectMinutes">
+      {{ minutes || "--" }}
+    </button>
+    <button @click="selectSeconds">
+      {{ seconds || "--" }}
+    </button>
+  </template>
+</time-picker>
+```
+
+There are a few props being exposed:
+
+| Name            | Type          | Default | Description                                                      |
+| --------------- | ------------- | ------- | ---------------------------------------------------------------- |
+| `hours`         | `number/null` | null    | Hour portion of the time                                         |
+| `minutes`       | `number/null` | null    | Minute portion of the time                                       |
+| `seconds`       | `number/null` | null    | Seconds portion of the time                                      |
+| `selectHours`   | `function`    | N/A     | Helper function used for triggering the selection of the hours   |
+| `selectMinutes` | `function`    | N/A     | Helper function used for triggering the selection of the minutes |
+| `selectSeconds` | `function`    | N/A     | Helper function used for triggering the selection of the seconds |
