@@ -3,7 +3,7 @@
 </div>
 
 <h1 align=center>Vue material time picker</h1>
-<p align=center>A material time picker component for Vue 3.</p>
+<p align=center>A material time picker component for Vue 3. Note: I will not be making an AM/PM version.</p>
 
 ## 🚀 Installation
 
