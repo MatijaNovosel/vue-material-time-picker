@@ -10,7 +10,7 @@
       :use-seconds="useSeconds"
       :disabled="disabled"
       :readonly="readonly"
-      @update:selecting="(value: SelectingTimes) => (state.selecting = value)"
+      @update:selecting="selectNotation"
     />
     <slot
       :hours="state.inputHour"
@@ -56,9 +56,12 @@ const slots = useSlots();
 
 const emit = defineEmits<{
   (e: "change", time: string): void;
-  (e: "click:hour", value: number): void;
-  (e: "click:minute", value: number): void;
-  (e: "click:second", value: number): void;
+  (e: "select:hour", value: number): void;
+  (e: "select:minute", value: number): void;
+  (e: "select:second", value: number): void;
+  (e: "click:hour"): void;
+  (e: "click:minute"): void;
+  (e: "click:second"): void;
   (e: "update:modelValue", value: string): void;
 }>();
 
@@ -136,6 +139,21 @@ const emitValue = () => {
   if (value !== null) emit("update:modelValue", value);
 };
 
+const selectNotation = (value: SelectingTimes) => {
+  state.selecting = value;
+  switch (state.selecting) {
+    case 1:
+      emit("click:hour");
+      break;
+    case 2:
+      emit("click:minute");
+      break;
+    case 3:
+      emit("click:second");
+      break;
+  }
+};
+
 const onInput = (value: number) => {
   if (state.selecting === SelectingTimes.Hour) state.inputHour = value;
   else if (state.selecting === SelectingTimes.Minute) state.inputMinute = value;
@@ -146,13 +164,13 @@ const onInput = (value: number) => {
 const onChange = (value: number) => {
   switch (state.selecting) {
     case 1:
-      emit("click:hour", value);
+      emit("select:hour", value);
       break;
     case 2:
-      emit("click:minute", value);
+      emit("select:minute", value);
       break;
     case 3:
-      emit("click:second", value);
+      emit("select:second", value);
       break;
   }
 

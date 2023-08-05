@@ -48,6 +48,17 @@ const time = ref(null);
 | `full-width`  | `boolean`       | false   | Ignores the previous `width` prop and sets the width to 100% of the parent container                             |
 | `color`       | `string`        | #3ba13b | Color of the time picker title and clock hand as well as any active element                                      |
 
+## 🎺 Events
+
+| Name            | Type                      | Description                                                 |
+| --------------- | ------------------------- | ----------------------------------------------------------- |
+| `select:hour`   | `(value: number) => void` | Triggered when the hour value is selected                   |
+| `select:minute` | `(value: number) => void` | Triggered when the minute value is selected                 |
+| `select:second` | `(value: number) => void` | Triggered when the second value is selected                 |
+| `click:hour`    | `() => void`              | Triggered when the hour notation is clicked on the header   |
+| `click:minute`  | `() => void`              | Triggered when the minute notation is clicked on the header |
+| `click:second`  | `() => void`              | Triggered when the second notation is clicked on the header |
+
 ## 🧩 Slots
 
 ### header

@@ -1,6 +1,12 @@
 <template>
   <div style="display: flex">
-    <time-picker v-model="time" v-if="!hidden" use-seconds> </time-picker>
+    <time-picker
+      @click:hour="changed"
+      v-model="time"
+      v-if="!hidden"
+      use-seconds
+    >
+    </time-picker>
     {{ time }}
   </div>
   <div style="display: flex">
@@ -22,5 +28,9 @@ const setVal = () => {
 
 const hide = () => {
   hidden.value = !hidden.value;
+};
+
+const changed = () => {
+  console.log("bruh");
 };
 </script>
