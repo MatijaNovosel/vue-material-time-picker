@@ -58,6 +58,7 @@ const time = ref(null);
 | `click:hour`    | `() => void`              | Triggered when the hour notation is clicked on the header   |
 | `click:minute`  | `() => void`              | Triggered when the minute notation is clicked on the header |
 | `click:second`  | `() => void`              | Triggered when the second notation is clicked on the header |
+| `change`        | `(time: string) => void`  | Triggered when the full value is selected                   |
 
 ## 🧩 Slots
 
