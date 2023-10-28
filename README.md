@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/36193643/236636342-a4f3b025-54a1-4a27-a6d9-9afdfbdd424b.png" />
+  <img src="https://github.com/MatijaNovosel/vue-material-time-picker/assets/36193643/90057a83-6115-41a3-911e-9eab0702c497" />
 </div>
 
 <h1 align=center>Vue material time picker</h1>
