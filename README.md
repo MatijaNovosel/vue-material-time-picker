@@ -14,6 +14,10 @@ Install using your package manager of choice:
 yarn add vue-material-time-picker
 ```
 
+## 📺 Demo
+
+https://matija-components.vercel.app/time-picker
+
 ## ⚙️ Usage
 
 Import the component locally or define it globally and include the css file:
