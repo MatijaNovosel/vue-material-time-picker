@@ -24,6 +24,7 @@
   "module": "./dist/vue-material-time-picker.js",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/vue-material-time-picker.js",
       "require": "./dist/vue-material-time-picker.umd.cjs"
     },
@@ -32,7 +33,6 @@
       "require": "./dist/style.css"
     }
   },
-  "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
